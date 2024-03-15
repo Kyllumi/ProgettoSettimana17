@@ -13,12 +13,10 @@ return new class extends Migration {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('description');
+            $table->string('language');
             $table->foreignId('user_id');
-            $table->foreign('user_id')->on('users')->references('id')
-                ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('task_id');
-            $table->foreign('task_id')->on('tasks')->references('id')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

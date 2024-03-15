@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -13,7 +14,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::with('activities')->where('user_id', Auth::user()->id)->paginate(7);
+
+        return view('projects', ['projects' => $projects]);
     }
 
     /**
@@ -37,7 +40,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projectDetail', ['project' => $project]);
     }
 
     /**

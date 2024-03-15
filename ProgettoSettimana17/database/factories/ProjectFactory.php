@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $languages = ['HTML', 'CSS', 'Python', 'JavaScript', 'PHP', 'Java'];
+
         return [
-            //
+            'name' => fake()->text(30),
+            'description' => fake()->text(200),
+            'language' => fake()->randomElement($languages),
+            'user_id' => User::get()->random()->id,
         ];
     }
 }
