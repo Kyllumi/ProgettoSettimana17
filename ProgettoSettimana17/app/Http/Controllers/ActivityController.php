@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
+use Auth;
 
 class ActivityController extends Controller
 {
@@ -13,7 +14,11 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return 'ok';
+        $user = Auth::user();
+
+        $activities = $user->activities;
+
+        return view('activities', ['activities' => $activities]);
     }
 
     /**
