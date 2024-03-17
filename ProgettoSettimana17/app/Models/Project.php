@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
+    protected $fillable = ['name', 'description', 'language', 'user_id'];
+
     use HasFactory;
   
     public function activities(): HasMany {

@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="card-footer bg-white">
-                            <a class="btn text-black mt-3" style="border: 2px solid #818CF8; width: 100%" href="{{ URL::previous() }}">Torna indietro</a>
+                            <a class="btn text-black mt-3" style="border: 2px solid #818CF8; width: 100%" href="{{ URL::previous() }}" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Torna indietro</a>
                         </div>
                     </div>
 

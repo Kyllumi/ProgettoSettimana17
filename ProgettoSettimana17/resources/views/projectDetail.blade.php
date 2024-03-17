@@ -26,7 +26,7 @@
                              @foreach($project->activities as $activity)
                              <li class="list-group-item list-group-item-action rounded">
                                     <span class="ms-3">{{$activity->title}}</span>
-                                    <a class="btn me-3 text-black float-end" style="border: 2px solid #818CF8;" href="/activities/{{$activity->id}}">Dettagli</i></a>
+                                    <a class="btn me-3 text-black float-end" style="border: 2px solid #818CF8;" href="/activities/{{$activity->id}}" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Dettagli</i></a>
                              </li>
                              @endforeach
                         </ul>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="card-footer bg-white">
-                      <a class="btn text-black mt-3" style="border: 2px solid #818CF8; width: 100%" href="/projects">Torna indietro</a>
+                      <a class="btn text-black mt-3" style="border: 2px solid #818CF8; width: 100%" href="/projects" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Torna indietro</a>
                     </div>
                   </div>
                       

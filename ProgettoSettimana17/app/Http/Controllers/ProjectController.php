@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
@@ -24,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+       return view('addProject', ['user' => Auth::user()]);
     }
 
     /**
@@ -32,7 +33,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->only(['name', 'description', 'language']);
+        $data['user_id'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+
+        $queryBuilder = Project::create($data);
+
+        return redirect()->action([ProjectController::class, 'index']);
     }
 
     /**
