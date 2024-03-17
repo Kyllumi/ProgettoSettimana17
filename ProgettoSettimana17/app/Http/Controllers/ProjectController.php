@@ -40,7 +40,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projectDetail', ['project' => $project]);
+        return view('projectDetail', ['project' => $project->load('activities')]);
+
     }
 
     /**
