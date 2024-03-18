@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Aggiunta attività') }}
+            {{ __('Modifica progetto') }}
         </h2>
     </x-slot>
 
@@ -10,15 +10,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <form method="post" action="{{ route('activities.store') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
+                <form method="post" action="{{ route('activities.update', $activity->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
                             <label for="title" class="form-label">Titolo attività</label>
-                            <input type="text" class="form-control rounded" name="title" value="{{ old('name') }}" required>
+                            <input type="text" class="form-control rounded" name="title" value="{{ $activity->title }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">Descrizione</label>
-                            <input type="text" class="form-control rounded" name="description" value="{{ old('description') }}" required>
+                            <input type="text" class="form-control rounded" name="description" value="{{ $activity->description }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="project_id" class="form-label">ID progetto</label>
@@ -28,7 +29,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn text-black my-3" style="border: 2px solid #F8A681; width: 100%" onmouseover="this.style.backgroundColor='#F8A681';" onmouseout="this.style.backgroundColor='#FFFFFF'; ">Aggiungi attività</button>
+                        <button type="submit" class="btn text-black my-3" style="border: 2px solid #F8A681; width: 100%" onmouseover="this.style.backgroundColor='#F8A681';" onmouseout="this.style.backgroundColor='#FFFFFF'; ">Modifica attività</button>
                     </form>
                     
                     <hr>

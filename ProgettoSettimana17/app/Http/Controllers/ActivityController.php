@@ -60,7 +60,8 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        $projects = Project::where('user_id', Auth::user()->id)->get();
+        return view('editActivity', ['activity' => $activity], ['projects' => $projects]);
     }
 
     /**
@@ -68,7 +69,10 @@ class ActivityController extends Controller
      */
     public function update(UpdateActivityRequest $request, Activity $activity)
     {
-        //
+
+        $data = $request->only(['title', 'description', 'project_id', 'start_date']);
+        $activity->update($data);
+        return redirect()->route('activities.index')->with('success', 'Attività aggiornata con successo.');
     }
 
     /**
@@ -77,6 +81,8 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         $activity->delete();
-        return redirect()->route('activities.index')->with('success', 'Attività eliminata con successo.');
+        // return redirect()->route('activities.index')->with('success', 'Attività eliminata con successo.');
+        return redirect()->back()->with('success', 'Attività eliminata con successo.');
+
     }
 }
