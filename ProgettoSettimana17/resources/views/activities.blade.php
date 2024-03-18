@@ -17,10 +17,19 @@
                 @if($activities->count() > 0)
                       <ul class="list-group list-group-flush">
                            @foreach($activities as $activity)
-                           <li class="list-group-item list-group-item-action rounded">
-                                  <span>{{$activity->project_id}} - </span>
-                                  <span>{{$activity->title}}</span>
-                                  <a class="btn me-3 text-black float-end" style="border: 2px solid #818CF8;" href="activities/{{$activity->id}}" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Dettagli</i></a>
+                           <li class="list-group-item list-group-item-action rounded d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-start flex-column">
+                                  <span> <strong>ID progetto: </strong> {{$activity->project_id}}</span>
+                                  <span> <strong>Titolo attività: </strong>{{$activity->title}}</span>
+                                </div>
+                                  <div class="d-flex align-items-center">
+                                    <form method="POST" action="{{ route('activities.destroy', $activity->id) }}" onsubmit="return confirm('Sei sicuro di voler eliminare questa attività?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn me-3 text-black float-end" style="border: 2px solid red;" onmouseover="this.style.backgroundColor='red';" onmouseout="this.style.backgroundColor='#FFFFFF';">Elimina</button>
+                                    </form>
+                                    <a class="btn me-3 text-black" style="border: 2px solid #818CF8;" href="{{ route('activities.show', $activity->id) }}" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Dettagli</i></a>
+                                  </div>
                            </li>
                            @endforeach
                       </ul>
