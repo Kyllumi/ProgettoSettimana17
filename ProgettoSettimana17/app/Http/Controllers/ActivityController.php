@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
+use App\Models\Project;
 use Auth;
+use Carbon\Carbon;
 
 class ActivityController extends Controller
 {
@@ -26,7 +28,8 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        $projects = Project::where('user_id', Auth::user()->id)->get();
+        return view('addActivity', ['user' => Auth::user()], ['projects' => $projects]);
     }
 
     /**
@@ -34,7 +37,14 @@ class ActivityController extends Controller
      */
     public function store(StoreActivityRequest $request)
     {
-        //
+       $data['title'] = $request->title;
+       $data['description'] = $request->description;
+       $data['project_id'] = $request->project_id;
+       $data['start_date'] = Carbon::parse($request->start_date);
+
+       $queryBuilder = Activity::create($data);
+
+        return redirect()->action([ActivityController::class, 'index']);
     }
 
     /**

@@ -9,11 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+
+                    <div>
+                        <a class="btn text-black mb-3" href="{{ route('activities.create') }}" style="border: 2px solid #818CF8; width: 100%" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Aggiungi una attività</a>
+                    </div>
+
                 @if($activities->count() > 0)
                       <ul class="list-group list-group-flush">
                            @foreach($activities as $activity)
                            <li class="list-group-item list-group-item-action rounded">
-                                  <span class="ms-3">{{$activity->title}}</span>
+                                  <span>{{$activity->project_id}} - </span>
+                                  <span>{{$activity->title}}</span>
                                   <a class="btn me-3 text-black float-end" style="border: 2px solid #818CF8;" href="activities/{{$activity->id}}" onmouseover="this.style.backgroundColor='#818CF8';" onmouseout="this.style.backgroundColor='#FFFFFF';">Dettagli</i></a>
                            </li>
                            @endforeach
